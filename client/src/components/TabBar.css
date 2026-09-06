@@ -1,0 +1,23 @@
+.tabbar {
+  display: flex;
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+  padding: 10px 8px calc(14px + env(safe-area-inset-bottom));
+  position: sticky;
+  bottom: 0;
+}
+.tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  color: var(--mute);
+}
+.tab.active {
+  color: var(--green);
+}
+.tab span {
+  font-size: 10.5px;
+  font-weight: 600;
+}

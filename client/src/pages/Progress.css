@@ -1,0 +1,117 @@
+.chart-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.chart-head .n {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 26px;
+}
+.chart-head .l {
+  font-size: 12px;
+  color: var(--mute);
+  font-weight: 600;
+}
+.stats-grid {
+  display: flex;
+  margin-top: 20px;
+}
+.g-stat {
+  flex: 1;
+  text-align: center;
+  border-left: 1px solid var(--line);
+}
+.g-stat:first-child {
+  border-left: none;
+}
+.g-stat .v {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+}
+.g-stat .k {
+  font-size: 10.5px;
+  color: var(--mute);
+  margin-top: 2px;
+}
+.log-weight-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+.log-weight-row input {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 9px 12px;
+  font-size: 14px;
+}
+.log-weight-row button {
+  background: var(--green);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0 16px;
+  font-weight: 700;
+  font-size: 13px;
+}
+.heat-card {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+.heat-cell {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 4px;
+  background: var(--gray-soft);
+}
+.streak-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 12.5px;
+  color: var(--mute);
+  font-weight: 600;
+  grid-column: 1 / -1;
+}
+.pb-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.pb-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 12px 14px;
+}
+.pb-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: var(--green-soft);
+  color: var(--green-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.pb-info {
+  flex: 1;
+}
+.pb-info .n {
+  font-size: 13.5px;
+  font-weight: 700;
+}
+.pb-info .v {
+  font-size: 12px;
+  color: var(--mute);
+  margin-top: 1px;
+}

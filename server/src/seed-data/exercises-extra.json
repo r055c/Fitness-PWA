@@ -1,0 +1,282 @@
+[
+  {
+    "id": "Shuttle_Sprints_Suicides",
+    "name": "Shuttle Sprints (Suicides)",
+    "category": "cardio",
+    "equipment": "cones",
+    "difficulty": "intermediate",
+    "mechanic": null,
+    "force": null,
+    "primaryMuscles": ["quadriceps", "calves"],
+    "secondaryMuscles": ["hamstrings", "glutes"],
+    "instructions": [
+      "Set 4 cones in a line at 5 m, 10 m, 15 m and 20 m from your start line.",
+      "Sprint to the first cone, touch the line with your hand or foot, and sprint back to the start.",
+      "Sprint to the second cone and back, then the third, then the fourth — touching the start line every time.",
+      "Drive your arms and stay low out of each turn to accelerate quickly.",
+      "Walk back to the start and rest 60-90s between reps."
+    ],
+    "tags": ["speed", "stamina", "football"],
+    "images": []
+  },
+  {
+    "id": "Agility_Ladder_Icky_Shuffle",
+    "name": "Agility Ladder – Icky Shuffle",
+    "category": "plyometrics",
+    "equipment": "agility ladder",
+    "difficulty": "beginner",
+    "mechanic": null,
+    "force": null,
+    "primaryMuscles": ["calves", "quadriceps"],
+    "secondaryMuscles": ["hip flexors"],
+    "instructions": [
+      "Stand side-on at the start of the ladder with the first square to your inside.",
+      "Step your lead foot into the square, then your trail foot into the same square.",
+      "Step your lead foot out and diagonally forward, planting outside the ladder past the next square.",
+      "Bring your trail foot to meet it outside the ladder, then repeat the pattern into the next square.",
+      "Keep your steps light and quick, driving your knees up, and work all the way down the ladder."
+    ],
+    "tags": ["speed", "football"],
+    "images": []
+  },
+  {
+    "id": "Agility_Ladder_In_In_Out_Out",
+    "name": "Agility Ladder – In-In-Out-Out",
+    "category": "plyometrics",
+    "equipment": "agility ladder",
+    "difficulty": "beginner",
+    "mechanic": null,
+    "force": null,
+    "primaryMuscles": ["calves", "quadriceps"],
+    "secondaryMuscles": ["glutes"],
+    "instructions": [
+      "Face forward at the start of the ladder.",
+      "Step both feet into the first square one after the other (in, in).",
+      "Step both feet outside the square, one to each side (out, out).",
+      "Move forward to the next square and repeat the in-in-out-out pattern.",
+      "Keep your chest up and stay on the balls of your feet for the full length of the ladder."
+    ],
+    "tags": ["speed", "football"],
+    "images": []
+  },
+  {
+    "id": "Cone_Weave_Sprints",
+    "name": "Cone Weave Sprints",
+    "category": "cardio",
+    "equipment": "cones",
+    "difficulty": "beginner",
+    "mechanic": null,
+    "force": null,
+    "primaryMuscles": ["quadriceps", "glutes"],
+    "secondaryMuscles": ["calves", "hip flexors"],
+    "instructions": [
+      "Set 5-6 cones in a straight line, 2 m apart.",
+      "Starting at one end, sprint and weave through the cones, cutting sharply left then right around each one.",
+      "Keep your hips low and your steps short through each change of direction to stay quick.",
+      "Sprint through the last cone rather than slowing down before it.",
+      "Jog back to the start and repeat."
+    ],
+    "tags": ["speed", "football"],
+    "images": []
+  },
+  {
+    "id": "Hill_Sprints",
+    "name": "Hill Sprints",
+    "category": "cardio",
+    "equipment": null,
+    "difficulty": "advanced",
+    "mechanic": null,
+    "force": null,
+    "primaryMuscles": ["hamstrings", "glutes", "calves"],
+    "secondaryMuscles": ["quadriceps"],
+    "instructions": [
+      "Find a hill with a moderate incline, roughly 40-60 m long.",
+      "Sprint to the top at close to maximum effort, driving your knees and arms.",
+      "Lean slightly into the hill and keep your strides short and powerful.",
+      "Walk back down to fully recover before the next rep.",
+      "Repeat for the prescribed number of reps."
+    ],
+    "tags": ["speed", "stamina", "football"],
+    "images": []
+  },
+  {
+    "id": "Flying_Sprints_30m",
+    "name": "Flying Sprints (30m)",
+    "category": "cardio",
+    "equipment": null,
+    "difficulty": "advanced",
+    "mechanic": null,
+    "force": null,
+    "primaryMuscles": ["hamstrings", "quadriceps", "glutes"],
+    "secondaryMuscles": ["calves"],
+    "instructions": [
+      "Mark a 20 m build-up zone followed by a 30 m timed zone.",
+      "Accelerate gradually through the build-up so you hit top speed right as you enter the timed zone.",
+      "Sprint through the full 30 m at maximum speed, driving your arms and staying tall.",
+      "Decelerate gradually after the line rather than stopping abruptly.",
+      "Walk back and rest 2-3 minutes between reps to keep quality high."
+    ],
+    "tags": ["speed", "football"],
+    "images": []
+  },
+  {
+    "id": "Bleep_Test_Shuttle_Intervals",
+    "name": "Bleep Test (Multi-Stage Fitness Test)",
+    "category": "cardio",
+    "equipment": "cones",
+    "difficulty": "intermediate",
+    "mechanic": null,
+    "force": null,
+    "primaryMuscles": ["cardiovascular system"],
+    "secondaryMuscles": ["quadriceps", "calves"],
+    "instructions": [
+      "Mark two lines 20 m apart.",
+      "Run between the lines in time with a beep, or a steadily shortening interval if running solo.",
+      "Touch or turn behind each line before running back to the other.",
+      "Each level shortens the time allowed to cover the 20 m, so your pace increases stage by stage.",
+      "Stop when you can no longer reach the line in time — that stage and shuttle number is your score."
+    ],
+    "tags": ["stamina", "football"],
+    "images": []
+  },
+  {
+    "id": "Jump_Rope_Basic_Bounce",
+    "name": "Jump Rope – Basic Bounce",
+    "category": "cardio",
+    "equipment": "jump rope",
+    "difficulty": "beginner",
+    "mechanic": null,
+    "force": null,
+    "primaryMuscles": ["calves"],
+    "secondaryMuscles": ["shoulders", "forearms"],
+    "instructions": [
+      "Hold the rope handles at hip height with your elbows close to your body.",
+      "Turn the rope mainly with your wrists, not your whole arms.",
+      "Jump just high enough to clear the rope, landing softly on the balls of your feet.",
+      "Keep a steady, relaxed rhythm rather than jumping high.",
+      "Continue for the prescribed time, resting briefly if your rhythm breaks down."
+    ],
+    "tags": ["stamina"],
+    "images": []
+  },
+  {
+    "id": "Jump_Rope_Double_Unders",
+    "name": "Jump Rope – Double Unders",
+    "category": "cardio",
+    "equipment": "jump rope",
+    "difficulty": "intermediate",
+    "mechanic": null,
+    "force": null,
+    "primaryMuscles": ["calves"],
+    "secondaryMuscles": ["shoulders", "forearms"],
+    "instructions": [
+      "Start with the same relaxed stance as a basic bounce, rope turning from the wrists.",
+      "Jump slightly higher than usual to give the rope time to pass under your feet twice per jump.",
+      "Snap your wrists faster to speed the rope up rather than jumping much higher.",
+      "Keep your core braced and land softly each rep.",
+      "Break into sets if you miss — quality reps beat a long broken streak."
+    ],
+    "tags": ["speed", "stamina"],
+    "images": []
+  },
+  {
+    "id": "Battle_Ropes_Alternating_Waves",
+    "name": "Battle Ropes – Alternating Waves",
+    "category": "cardio",
+    "equipment": "battle ropes",
+    "difficulty": "intermediate",
+    "mechanic": null,
+    "force": null,
+    "primaryMuscles": ["shoulders", "forearms"],
+    "secondaryMuscles": ["core", "lats"],
+    "instructions": [
+      "Anchor the rope and hold one end in each hand, feet shoulder-width apart in a slight squat.",
+      "Brace your core and keep a soft bend in your knees throughout.",
+      "Drive one arm down hard while the other rises, creating alternating waves along the rope.",
+      "Keep the waves consistent in size and speed rather than slowing over the set.",
+      "Work for the prescribed time, then rest."
+    ],
+    "tags": ["stamina"],
+    "images": []
+  },
+  {
+    "id": "Burpees",
+    "name": "Burpees",
+    "category": "cardio",
+    "equipment": "body only",
+    "difficulty": "intermediate",
+    "mechanic": "compound",
+    "force": null,
+    "primaryMuscles": ["chest", "quadriceps"],
+    "secondaryMuscles": ["shoulders", "abdominals", "hamstrings"],
+    "instructions": [
+      "Stand with feet shoulder-width apart.",
+      "Drop into a squat and place your hands on the floor in front of you.",
+      "Kick your feet back into a plank position and perform a push-up.",
+      "Jump your feet back up to your hands.",
+      "Explode upward into a jump, reaching overhead, and land ready for the next rep."
+    ],
+    "tags": ["speed", "stamina"],
+    "images": []
+  },
+  {
+    "id": "High_Knees",
+    "name": "High Knees",
+    "category": "cardio",
+    "equipment": "body only",
+    "difficulty": "beginner",
+    "mechanic": null,
+    "force": null,
+    "primaryMuscles": ["hip flexors", "quadriceps"],
+    "secondaryMuscles": ["calves", "abdominals"],
+    "instructions": [
+      "Stand tall with feet hip-width apart.",
+      "Drive one knee up toward your chest while pumping the opposite arm forward.",
+      "Quickly switch legs, landing on the ball of your foot each time.",
+      "Keep your torso upright and move at a fast running-in-place tempo.",
+      "Continue for the prescribed time, keeping the rhythm quick and light."
+    ],
+    "tags": ["speed", "stamina", "football"],
+    "images": []
+  },
+  {
+    "id": "Star_Agility_Drill",
+    "name": "Star Agility Drill",
+    "category": "plyometrics",
+    "equipment": "cones",
+    "difficulty": "intermediate",
+    "mechanic": null,
+    "force": null,
+    "primaryMuscles": ["quadriceps", "glutes"],
+    "secondaryMuscles": ["calves", "hip flexors"],
+    "instructions": [
+      "Set one cone in the centre and four cones around it in a star pattern, each 3-5 m away.",
+      "Starting at the centre cone, sprint forward to cone 1 and back to the centre.",
+      "Shuffle sideways to cone 2 and back, then backpedal to cone 3 and back.",
+      "Shuffle sideways to cone 4 and back to complete one full round.",
+      "Move at maximum controlled speed throughout, keeping your hips low on direction changes."
+    ],
+    "tags": ["speed", "football"],
+    "images": []
+  },
+  {
+    "id": "Lateral_Shuffle",
+    "name": "Lateral Shuffle",
+    "category": "plyometrics",
+    "equipment": "cones",
+    "difficulty": "beginner",
+    "mechanic": null,
+    "force": null,
+    "primaryMuscles": ["glutes", "quadriceps"],
+    "secondaryMuscles": ["calves", "adductors"],
+    "instructions": [
+      "Set two cones 5-8 m apart and start in an athletic stance beside one.",
+      "Push off your outside foot and shuffle sideways to the far cone without crossing your feet.",
+      "Touch the ground beside the cone, staying low in a slight squat.",
+      "Push off in the opposite direction and shuffle back to the start cone.",
+      "Keep your chest up and hips low throughout, moving as quickly as balance allows."
+    ],
+    "tags": ["speed", "football"],
+    "images": []
+  }
+]

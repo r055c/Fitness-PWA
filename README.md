@@ -5,15 +5,26 @@ match. It generates a weekly training plan that tapers into match day, tracks
 workouts against a searchable exercise library (with step-by-step instructions),
 and logs your weight over time towards a goal.
 
-No Supabase, no third-party backend — just a small Express API backed by
-SQLite (via Node's built-in `node:sqlite`), and a React PWA frontend that
-installs to your home screen and works offline.
+No Supabase, no backend server to run or pay for — it's a fully static React
+PWA that stores everything in the browser (IndexedDB), which is what makes it
+deployable for free on GitHub Pages, just like it would be with any static
+site. Install it to your phone's home screen and it works offline from then on.
 
 ## Stack
 
-- **Client**: React + Vite, `vite-plugin-pwa` (installable, offline app-shell caching), plain CSS (no framework) matching the mockups' design tokens.
-- **Server**: Express + `node:sqlite` (Node's built-in SQLite driver — no native build step, no external DB service).
-- **Data**: one process serves both the API and the built client, so it's a single `npm start` away from running anywhere Node runs (a laptop, a Raspberry Pi, a small VPS).
+- React + Vite, `vite-plugin-pwa` (installable, offline caching of the app shell and the exercise library).
+- **Storage: IndexedDB**, in the browser — no server, no database to host. `src/api.js` exposes the same functions a real backend would, so the page components don't know or care that there isn't one.
+- Routing is hash-based (`/#/schedule`, not `/schedule`) — deliberately, since GitHub Pages can't rewrite unknown paths back to `index.html` the way a real server can, and a hash route never hits the server at all.
+
+## The trade-off worth knowing
+
+Your workout history, weight log, and personal bests live in that one
+browser, on that one device. There's no account and nothing syncs between
+your phone and a laptop. Clearing your browser's site data, or switching
+phones, loses your history. If that becomes a problem, the fix is either an
+export/import feature (happy to add one) or moving back to a real backend
+with a proper database — this static version and a server-backed version
+are two genuinely different apps under the hood, not a setting to flip.
 
 ## Exercise library
 
@@ -21,15 +32,17 @@ Seeded from [free-exercise-db](https://github.com/yuhonas/free-exercise-db)
 (public domain, ~870 exercises with instructions, muscle groups, equipment
 and difficulty), plus ~14 hand-written speed/agility/conditioning drills
 (shuttle sprints, agility ladder patterns, hill sprints, the bleep test, etc.)
-that free-exercise-db doesn't cover, since those are exactly the kind of
-sessions a five-a-side player needs. Every exercise is additionally tagged
-`speed`, `stamina`, `strength` and/or `mobility` so the library and the
-default plan can filter by training goal, not just muscle group.
+that free-exercise-db doesn't cover. Every exercise is tagged `speed`,
+`stamina`, `strength` and/or `mobility` so the library and the weekly plan
+can filter by training goal, not just muscle group.
 
-Exercise photos and Google Fonts are loaded from the network at runtime
-(GitHub's raw content CDN and Google Fonts respectively) — nothing large is
-vendored into the repo. Everything else (instructions, muscle data, the
-weekly plan, your logged sets and weight) lives in the local SQLite file.
+`data/exercises-base.json` + `data/exercises-extra.json` are the source
+files; `npm run dev`/`npm run build` combine them into `public/exercises.json`
+automatically (see `scripts/build-exercise-data.mjs`) — edit the source
+files and re-run, don't hand-edit the generated one. Exercise photos link to
+GitHub's raw content CDN rather than being bundled, so they need a network
+connection the first time (cached for offline after that); everything else
+works fully offline once installed.
 
 ## The weekly plan
 
@@ -55,10 +68,10 @@ hill sprints, box jumps) are still in the exercise library under the
 "Speed & Stamina" filter — worth reintroducing once base fitness and
 bodyweight have moved, just not the right starting point on day one.
 
-This is a starting point, not a fixed rule — edit `server/src/seed.js`
-(`DEFAULT_PLAN`) and re-run `npm run seed` to change it: which days you
-have gym access, which night your match falls on, exercise selection,
-anything.
+This is a starting point, not a fixed rule — edit `src/lib/plan.js`
+(`DEFAULT_PLAN`) to change it: which days you have gym access, which
+night your match falls on, exercise selection, anything. It's plain data,
+no build step or database migration needed.
 
 ## Measuring stamina progress
 
@@ -82,52 +95,55 @@ features:
 4 weeks is enough to see early movement on RPE and the talk test; resting
 heart rate and weight tend to need a bit longer to trend clearly.
 
-## Getting started
-
-Requires Node 22.5+ (for `node:sqlite`).
+## Running it locally
 
 ```bash
-npm install       # installs both workspaces (client + server)
-npm run seed      # creates server/data/app.db and seeds exercises + plan
-npm run dev       # runs the API (port 3001) and the Vite dev server together
+npm install
+npm run dev
 ```
 
-Open the URL Vite prints (typically `http://localhost:5173`). The dev server
-proxies `/api` to the Express server, so there's no CORS setup needed.
+Open the URL Vite prints (typically `http://localhost:5173`). No database
+setup, no seed step — the exercise library is static data and your own
+data is created the moment you go through onboarding, right there in the
+browser.
 
-### Production / self-hosting
+## Deploying to GitHub Pages
 
-```bash
-npm run build     # builds the client into client/dist
-npm run seed      # first run only
-npm start         # single Node process serves the API + the built app on :3001
-```
+A GitHub Actions workflow (`.github/workflows/deploy.yml`) is already set
+up to build and publish the app on every push to `main`. One manual,
+one-time step is needed for a brand new repo: in the repo's **Settings →
+Pages**, set **Source** to **GitHub Actions** (instead of "Deploy from a
+branch"). After that, every push to `main` redeploys automatically — check
+the **Actions** tab for progress, and the same Settings → Pages screen for
+the live URL (`https://<you>.github.io/Fitness-PWA/`).
 
-Open `http://localhost:3001` (or your server's address) and "Add to Home
-Screen" — it installs like a native app and the app shell works offline.
+The build is already configured for a project-page subpath — if you rename
+the repository, update `REPO_NAME` in `vite.config.js` to match.
+
+Once it's live, open it on your phone and use the browser's "Add to Home
+Screen" — it installs and behaves like a native app from then on.
 
 ## Project layout
 
 ```
-server/
-  src/
-    schema.sql          — SQLite schema
-    db.js               — opens the database, applies the schema
-    seed.js             — seeds exercises + the default weekly plan
-    seed-data/           — exercise JSON (free-exercise-db + curated extras)
-    routes/              — exercises, plan, sessions, weight, profile, progress
-    app.js, index.js     — Express app + entrypoint
-client/
-  src/
-    pages/                — one file per screen (Home, Schedule, Exercise
-                             Library/Detail, Workout Session, Progress, Onboarding)
-    components/           — shared icons, tab bar, day-type icon mapping
-    api.js                — fetch wrapper for the server API
+data/
+  exercises-base.json    — free-exercise-db, transformed (see the repo history for the prep script)
+  exercises-extra.json   — hand-written speed/agility/conditioning drills
+scripts/
+  build-exercise-data.mjs — combines the two into public/exercises.json
+src/
+  lib/
+    db.js                — thin IndexedDB wrapper (via the `idb` package)
+    exercises.js         — reads/filters the static exercise library
+    plan.js              — DEFAULT_PLAN — the weekly plan, as plain data
+  api.js                 — same interface a real backend would expose, backed by lib/
+  pages/                 — one file per screen (Home, Schedule, Exercise
+                            Library/Detail, Workout Session, Progress, Onboarding)
+  components/            — shared icons, tab bar, day-type icon mapping
 ```
 
 ## What's not in scope (yet)
 
-- Single user, no accounts/auth — this is a personal-use app.
+- Single user, no accounts — and see "The trade-off worth knowing" above re: where data lives.
+- No data export/import yet — worth adding given the above.
 - No push notifications for match day or rest timers.
-- Exercise photos are linked from GitHub rather than bundled, so they need a
-  network connection to load (the rest of the app works fully offline once cached).

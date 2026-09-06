@@ -73,6 +73,7 @@ CREATE TABLE IF NOT EXISTS set_logs (
   reps          INTEGER,
   distance_m    REAL,
   duration_sec  REAL,
+  rpe           INTEGER, -- perceived effort 1-10, mainly used for cardio/stamina work
   completed     INTEGER NOT NULL DEFAULT 0,
   logged_at     TEXT NOT NULL DEFAULT (datetime('now'))
 );

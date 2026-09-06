@@ -54,6 +54,28 @@ progressRouter.get('/summary', (_req, res) => {
     consistency.push({ date: key, count: counts.get(key) || 0 });
   }
 
+  const staminaLogRows = db.prepare(`
+    SELECT sl.logged_at, sl.duration_sec, sl.distance_m, sl.rpe, e.name AS exercise_name
+    FROM set_logs sl
+    JOIN exercises e ON e.id = sl.exercise_id
+    WHERE sl.completed = 1 AND sl.rpe IS NOT NULL AND e.tags LIKE '%"stamina"%'
+    ORDER BY sl.logged_at ASC
+  `).all();
+
+  const staminaLog = staminaLogRows.map((r) => ({
+    loggedAt: r.logged_at, exerciseName: r.exercise_name,
+    durationSec: r.duration_sec, distanceM: r.distance_m, rpe: r.rpe,
+  }));
+
+  let staminaTrend = null;
+  if (staminaLog.length >= 4) {
+    const half = Math.max(1, Math.floor(staminaLog.length / 2));
+    const earlyAvg = staminaLog.slice(0, half).reduce((s, l) => s + l.rpe, 0) / half;
+    const recentCount = staminaLog.length - half;
+    const recentAvg = staminaLog.slice(half).reduce((s, l) => s + l.rpe, 0) / recentCount;
+    staminaTrend = { earlyAvgRpe: +earlyAvg.toFixed(1), recentAvgRpe: +recentAvg.toFixed(1) };
+  }
+
   const personalBests = db.prepare(`
     SELECT pb.*, e.name AS exercise_name FROM personal_bests pb
     JOIN exercises e ON e.id = pb.exercise_id
@@ -72,6 +94,8 @@ progressRouter.get('/summary', (_req, res) => {
     streakDays,
     sessionsThisWeek,
     consistency,
+    staminaLog: staminaLog.slice(-20).reverse(),
+    staminaTrend,
     personalBests,
   });
 });

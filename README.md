@@ -60,6 +60,28 @@ This is a starting point, not a fixed rule — edit `server/src/seed.js`
 have gym access, which night your match falls on, exercise selection,
 anything.
 
+## Measuring stamina progress
+
+Weight and workout consistency are tracked automatically, but stamina is
+trickier — there's no single number for it. The app handles this by making
+the Brisk Walk and Steady State Walk sessions a repeatable test: the
+duration is fixed, so after finishing one it asks **"how hard did that
+feel?"** (a 1–10 RPE score, the standard perceived-exertion scale). Progress
+→ Stamina check-ins then shows that history and calls out the trend —
+the same walk scoring a 4/10 where it used to score a 7/10 is direct
+evidence your stamina has improved, independent of the scale.
+
+A few other signs worth watching, especially since these aren't (yet) app
+features:
+
+- **The talk test** — able to hold more of a conversation at the same walking pace.
+- **Recovery** — feeling less wrecked in the second half of Friday's match, or bouncing back faster the day after.
+- **Resting heart rate**, if you have any way to check it (phone, watch, or just a manual pulse count first thing in the morning) — a gradual drop over weeks is one of the clearest cardiovascular fitness signals there is.
+- A **fixed-route timing check** every couple of weeks — walk the same route at the same effort and see if it gets faster, separate from the in-app RPE score.
+
+4 weeks is enough to see early movement on RPE and the talk test; resting
+heart rate and weight tend to need a bit longer to trend clearly.
+
 ## Getting started
 
 Requires Node 22.5+ (for `node:sqlite`).

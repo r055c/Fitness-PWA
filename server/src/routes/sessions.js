@@ -41,13 +41,13 @@ function sessionDetail(sessionId) {
       target: { sets: row.sets, reps: row.reps, restSeconds: row.rest_seconds },
       previousSets: previousSetsFor(row.id, sessionId).map((s) => ({
         setNumber: s.set_number, weightKg: s.weight_kg, reps: s.reps,
-        distanceM: s.distance_m, durationSec: s.duration_sec,
+        distanceM: s.distance_m, durationSec: s.duration_sec, rpe: s.rpe,
       })),
     })),
     setLogs: setLogs.map((s) => ({
       id: s.id, exerciseId: s.exercise_id, setNumber: s.set_number,
       weightKg: s.weight_kg, reps: s.reps, distanceM: s.distance_m,
-      durationSec: s.duration_sec, completed: !!s.completed,
+      durationSec: s.duration_sec, rpe: s.rpe, completed: !!s.completed,
     })),
   };
 }
@@ -106,22 +106,25 @@ sessionsRouter.post('/:id/sets', (req, res) => {
   const session = db.prepare('SELECT * FROM workout_sessions WHERE id = ?').get(req.params.id);
   if (!session) return res.status(404).json({ error: 'not_found' });
 
-  const { exerciseId, setNumber, weightKg = null, reps = null, distanceM = null, durationSec = null, completed = true } = req.body;
+  const { exerciseId, setNumber, weightKg = null, reps = null, distanceM = null, durationSec = null, rpe = null, completed = true } = req.body;
   if (!exerciseId || !setNumber) return res.status(400).json({ error: 'exerciseId and setNumber are required' });
 
   const existing = db.prepare('SELECT id FROM set_logs WHERE session_id = ? AND exercise_id = ? AND set_number = ?')
     .get(session.id, exerciseId, setNumber);
 
   if (existing) {
-    db.prepare(`UPDATE set_logs SET weight_kg=?, reps=?, distance_m=?, duration_sec=?, completed=? WHERE id=?`)
-      .run(weightKg, reps, distanceM, durationSec, completed ? 1 : 0, existing.id);
+    db.prepare(`UPDATE set_logs SET weight_kg=?, reps=?, distance_m=?, duration_sec=?, rpe=?, completed=? WHERE id=?`)
+      .run(weightKg, reps, distanceM, durationSec, rpe, completed ? 1 : 0, existing.id);
   } else {
-    db.prepare(`INSERT INTO set_logs (id, session_id, exercise_id, set_number, weight_kg, reps, distance_m, duration_sec, completed)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`)
-      .run(uid(), session.id, exerciseId, setNumber, weightKg, reps, distanceM, durationSec, completed ? 1 : 0);
+    db.prepare(`INSERT INTO set_logs (id, session_id, exercise_id, set_number, weight_kg, reps, distance_m, duration_sec, rpe, completed)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`)
+      .run(uid(), session.id, exerciseId, setNumber, weightKg, reps, distanceM, durationSec, rpe, completed ? 1 : 0);
   }
 
-  if (completed) maybeUpdatePersonalBest(exerciseId, { weightKg, reps, distanceM, durationSec });
+  // A fixed-duration stamina check-in (a 30-minute walk, logged with an RPE)
+  // isn't a personal best in any meaningful sense — it's the same target
+  // every time. Only track PBs for genuine timed/weighted/distance efforts.
+  if (completed && rpe == null) maybeUpdatePersonalBest(exerciseId, { weightKg, reps, distanceM, durationSec });
 
   res.json(sessionDetail(session.id));
 });

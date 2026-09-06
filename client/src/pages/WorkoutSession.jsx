@@ -17,6 +17,11 @@ function numFrom(reps) {
   return m ? Number(m[1]) : null;
 }
 
+function minutesToSeconds(reps) {
+  const m = reps && reps.match(/^([\d.]+)min$/);
+  return m ? Number(m[1]) * 60 : null;
+}
+
 function fmtClock(totalSec) {
   const m = Math.floor(totalSec / 60);
   const s = Math.floor(totalSec % 60);
@@ -33,6 +38,7 @@ export function WorkoutSession() {
   const [doneSets, setDoneSets] = useState({}); // `${exerciseId}-${setNumber}` -> logged values
   const [resting, setResting] = useState(false);
   const [restLeft, setRestLeft] = useState(0);
+  const [rpe, setRpe] = useState(null);
   const timerRef = useRef(null);
 
   useEffect(() => {
@@ -62,6 +68,7 @@ export function WorkoutSession() {
     } else {
       setFields({ weightKg: '', reps: '', distanceM: '', durationSec: '' });
     }
+    setRpe(null);
   }, [exIndex, setIndex, ex, mode]);
 
   useEffect(() => {
@@ -80,12 +87,14 @@ export function WorkoutSession() {
   const isLastSetOfExercise = setIndex >= totalSets;
   const isLastExercise = exIndex >= session.exercises.length - 1;
   const nextEx = session.exercises[exIndex + 1];
+  const isStaminaCheckIn = mode === 'reps-only' && ex.tags.includes('stamina');
 
   async function handleCompleteSet() {
     const payload = { exerciseId: ex.id, setNumber: setIndex, completed: true };
     if (mode === 'weight-reps') { payload.weightKg = Number(fields.weightKg) || null; payload.reps = Number(fields.reps) || null; }
     if (mode === 'duration') { payload.durationSec = Number(fields.durationSec) || null; }
     if (mode === 'distance') { payload.distanceM = Number(fields.distanceM) || null; payload.durationSec = Number(fields.durationSec) || null; }
+    if (isStaminaCheckIn) { payload.durationSec = minutesToSeconds(ex.target.reps); payload.rpe = rpe; }
 
     await api.logSet(session.id, payload);
     setDoneSets((prev) => ({ ...prev, [key]: payload }));
@@ -144,6 +153,17 @@ export function WorkoutSession() {
           ) : (
             <div className="simple-complete">
               <div className="wsub">Target: {ex.target.reps || `set ${setIndex} of ${totalSets}`}</div>
+              {isStaminaCheckIn && (
+                <div className="rpe-picker">
+                  <div className="rpe-label">How hard did that feel? (1 = easy, 10 = maximal effort)</div>
+                  <div className="rpe-row">
+                    {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
+                      <button key={n} type="button" className={`rpe-btn${rpe === n ? ' sel' : ''}`} onClick={() => setRpe(n)}>{n}</button>
+                    ))}
+                  </div>
+                  <div className="rpe-hint">Logging this each time is how you'll see stamina improve — the same walk should start to feel easier.</div>
+                </div>
+              )}
             </div>
           )
         ) : (
@@ -219,8 +239,8 @@ export function WorkoutSession() {
       </div>
 
       <div className="ws-bottom">
-        <button className="btn" onClick={handleCompleteSet}>
-          {isLastSetOfExercise && isLastExercise ? 'Finish workout' : mode === 'reps-only' ? 'Complete set' : 'Complete set'}
+        <button className="btn" disabled={isStaminaCheckIn && !doneSets[key] && !rpe} onClick={handleCompleteSet}>
+          {isLastSetOfExercise && isLastExercise ? 'Finish workout' : 'Complete set'}
         </button>
       </div>
     </div>

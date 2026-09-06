@@ -45,39 +45,46 @@ function seedExercises() {
   console.log(`Seeded ${exercises.length} exercises.`);
 }
 
+// Two gym days only (Mon/Wed), built for a beginner starting from a higher
+// bodyweight and a sedentary desk job: full-body each gym session rather
+// than a split (more effective at low weekly frequency), joint-friendly
+// exercise selection (machines/dumbbells over barbell squats/pull-ups),
+// and low-impact walking instead of sprint/plyometric work on the days
+// in between, since there's no gym access and high-impact drills are the
+// wrong starting point at this stage. Speed/agility work can be added
+// back in later as fitness improves — see the exercise library's "Speed &
+// Stamina" filter.
+//
 // day: { day, type, title, subtitle, durationMin, exercises: [{ exerciseId, sets, reps, restSeconds }] }
 const DEFAULT_PLAN = [
   {
-    day: 'MON', type: 'strength', title: 'Full Body Strength', subtitle: 'gym', durationMin: 45,
+    day: 'MON', type: 'strength', title: 'Full Body Strength A', subtitle: 'gym', durationMin: 45,
     exercises: [
-      { exerciseId: 'Barbell_Squat', sets: 3, reps: '8', restSeconds: 90 },
-      { exerciseId: 'Bent_Over_Barbell_Row', sets: 3, reps: '10', restSeconds: 75 },
+      { exerciseId: 'Goblet_Squat', sets: 3, reps: '10', restSeconds: 90 },
+      { exerciseId: 'Seated_Cable_Rows', sets: 3, reps: '10', restSeconds: 75 },
       { exerciseId: 'Barbell_Bench_Press_-_Medium_Grip', sets: 3, reps: '8', restSeconds: 90 },
-      { exerciseId: 'Plank', sets: 3, reps: '45s', restSeconds: 45 },
       { exerciseId: 'Standing_Dumbbell_Calf_Raise', sets: 3, reps: '15', restSeconds: 45 },
+      { exerciseId: 'Plank', sets: 3, reps: '30s', restSeconds: 45 },
     ],
   },
   {
-    day: 'TUE', type: 'speed_agility', title: 'Speed & Agility', subtitle: 'sprints, ladder & cone drills', durationMin: 30,
+    day: 'TUE', type: 'stamina', title: 'Brisk Walk', subtitle: 'no gym needed — outdoors or treadmill at home', durationMin: 30,
     exercises: [
-      { exerciseId: 'High_Knees', sets: 3, reps: '20s', restSeconds: 30 },
-      { exerciseId: 'Agility_Ladder_Icky_Shuffle', sets: 3, reps: 'through', restSeconds: 30 },
-      { exerciseId: 'Cone_Weave_Sprints', sets: 4, reps: '1 lap', restSeconds: 45 },
-      { exerciseId: 'Shuttle_Sprints_Suicides', sets: 4, reps: '1 rep', restSeconds: 75 },
-      { exerciseId: 'Star_Agility_Drill', sets: 3, reps: '1 round', restSeconds: 60 },
+      { exerciseId: 'Brisk_Walking_Intervals', sets: 1, reps: '30min', restSeconds: 0 },
     ],
   },
   {
-    day: 'WED', type: 'stamina', title: 'Stamina Intervals', subtitle: 'running, builds match-fitness endurance', durationMin: 30,
+    day: 'WED', type: 'strength', title: 'Full Body Strength B', subtitle: 'gym', durationMin: 45,
     exercises: [
-      { exerciseId: 'Jump_Rope_Basic_Bounce', sets: 5, reps: '1min', restSeconds: 30 },
-      { exerciseId: 'Hill_Sprints', sets: 6, reps: '1 rep', restSeconds: 90 },
-      { exerciseId: 'Burpees', sets: 3, reps: '15', restSeconds: 45 },
-      { exerciseId: 'Mountain_Climbers', sets: 3, reps: '30s', restSeconds: 30 },
+      { exerciseId: 'Dumbbell_Lunges', sets: 3, reps: '10', restSeconds: 90 },
+      { exerciseId: 'Close-Grip_Front_Lat_Pulldown', sets: 3, reps: '10', restSeconds: 75 },
+      { exerciseId: 'Standing_Dumbbell_Press', sets: 3, reps: '10', restSeconds: 75 },
+      { exerciseId: 'Dumbbell_Bicep_Curl', sets: 3, reps: '12', restSeconds: 45 },
+      { exerciseId: 'Russian_Twist', sets: 3, reps: '20', restSeconds: 30 },
     ],
   },
   {
-    day: 'THU', type: 'mobility', title: 'Light Mobility', subtitle: 'deload before match', durationMin: 20,
+    day: 'THU', type: 'mobility', title: 'Light Mobility', subtitle: 'deload before match, no gym needed', durationMin: 20,
     exercises: [
       { exerciseId: 'Worlds_Greatest_Stretch', sets: 2, reps: '5 each side', restSeconds: 15 },
       { exerciseId: 'Kneeling_Hip_Flexor', sets: 2, reps: '30s each side', restSeconds: 15 },
@@ -94,13 +101,9 @@ const DEFAULT_PLAN = [
     exercises: [],
   },
   {
-    day: 'SUN', type: 'strength', title: 'Upper Body Strength', subtitle: 'gym', durationMin: 40,
+    day: 'SUN', type: 'stamina', title: 'Steady State Walk', subtitle: 'easy pace, no gym needed', durationMin: 40,
     exercises: [
-      { exerciseId: 'Barbell_Bench_Press_-_Medium_Grip', sets: 4, reps: '8', restSeconds: 90 },
-      { exerciseId: 'Pullups', sets: 4, reps: '8', restSeconds: 90 },
-      { exerciseId: 'Standing_Dumbbell_Press', sets: 3, reps: '10', restSeconds: 75 },
-      { exerciseId: 'Dumbbell_Bicep_Curl', sets: 3, reps: '12', restSeconds: 45 },
-      { exerciseId: 'Triceps_Pushdown', sets: 3, reps: '12', restSeconds: 45 },
+      { exerciseId: 'Steady_State_Walk', sets: 1, reps: '40min', restSeconds: 0 },
     ],
   },
 ];

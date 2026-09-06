@@ -36,7 +36,7 @@ export function Schedule() {
   return (
     <div className="scroll">
       <div className="title">Your schedule</div>
-      <div className="caption">Built around your match day — dedicated speed and stamina sessions, tapering off before kickoff.</div>
+      <div className="caption">Two gym days, low-impact walking in between, and a lighter session before kickoff.</div>
 
       <div className="day-list">
         {plan.map((day) => {

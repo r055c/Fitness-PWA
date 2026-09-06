@@ -33,21 +33,32 @@ weekly plan, your logged sets and weight) lives in the local SQLite file.
 
 ## The weekly plan
 
-The default plan seeds a week that builds towards Friday, not just around it:
+The default plan is built for two gym days and a desk job: full-body
+strength (not a split — more effective at low weekly frequency) on the
+days there's actually gym access, low-impact walking in between rather
+than sprint/plyometric work, since that's the wrong starting point at a
+higher bodyweight with a sedentary background, and a taper into Friday's
+match.
 
 | Day | Session |
 | --- | --- |
-| Mon | Full Body Strength |
-| Tue | **Speed & Agility** — sprints, agility ladder, cone drills |
-| Wed | **Stamina Intervals** — jump rope, hill sprints, burpees |
-| Thu | Light Mobility — deload before match |
+| Mon | **Full Body Strength A** — gym |
+| Tue | Brisk Walk — no gym needed |
+| Wed | **Full Body Strength B** — gym |
+| Thu | Light Mobility — deload before match, no gym needed |
 | Fri | 5-a-side Football |
 | Sat | Rest & Recovery |
-| Sun | Upper Body Strength |
+| Sun | Steady State Walk — no gym needed |
+
+Higher-impact speed/agility drills (shuttle sprints, agility ladder,
+hill sprints, box jumps) are still in the exercise library under the
+"Speed & Stamina" filter — worth reintroducing once base fitness and
+bodyweight have moved, just not the right starting point on day one.
 
 This is a starting point, not a fixed rule — edit `server/src/seed.js`
-(`DEFAULT_PLAN`) and re-run `npm run seed` to change it, including which
-night your match falls on.
+(`DEFAULT_PLAN`) and re-run `npm run seed` to change it: which days you
+have gym access, which night your match falls on, exercise selection,
+anything.
 
 ## Getting started
 

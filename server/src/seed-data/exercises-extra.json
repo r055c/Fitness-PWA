@@ -278,5 +278,45 @@
     ],
     "tags": ["speed", "football"],
     "images": []
+  },
+  {
+    "id": "Brisk_Walking_Intervals",
+    "name": "Brisk Walking Intervals",
+    "category": "cardio",
+    "equipment": null,
+    "difficulty": "beginner",
+    "mechanic": null,
+    "force": null,
+    "primaryMuscles": ["quadriceps", "calves"],
+    "secondaryMuscles": ["glutes", "hamstrings"],
+    "instructions": [
+      "Warm up with 5 minutes of easy, comfortable-paced walking.",
+      "Pick up the pace for 3 minutes to a brisk walk — fast enough that talking is a little harder but still possible.",
+      "Drop back to an easy pace for 2 minutes to recover.",
+      "Repeat the brisk/easy cycle 4-5 times.",
+      "Finish with a 5 minute easy-paced cool-down walk."
+    ],
+    "tags": ["stamina"],
+    "images": []
+  },
+  {
+    "id": "Steady_State_Walk",
+    "name": "Steady State Walk",
+    "category": "cardio",
+    "equipment": null,
+    "difficulty": "beginner",
+    "mechanic": null,
+    "force": null,
+    "primaryMuscles": ["quadriceps", "calves"],
+    "secondaryMuscles": ["glutes", "hamstrings"],
+    "instructions": [
+      "Walk at a steady, comfortable pace you could hold a conversation at.",
+      "Keep a relaxed, upright posture with your arms swinging naturally.",
+      "Hold the same easy effort for the full duration rather than speeding up and slowing down.",
+      "Build the duration gradually week to week rather than the pace.",
+      "Finish by slowing to a gentle stroll for the last couple of minutes."
+    ],
+    "tags": ["stamina"],
+    "images": []
   }
 ]

@@ -113,7 +113,7 @@ export function Home({ profile }) {
           <div className="card">
             <span className="tag">{today.type.replace('_', ' ')}</span>
             <div className="wtitle">{today.title}</div>
-            <div className="wsub">{today.exercises.length} exercises · about {today.durationMin} min</div>
+            <div className="wsub">{today.exercises.length} exercise{today.exercises.length === 1 ? '' : 's'} · about {today.durationMin} min</div>
             <button className="btn" style={{ marginTop: 16 }} disabled={starting} onClick={handleStart}>
               <IconPlay fill="#fff" /> Start workout
             </button>
